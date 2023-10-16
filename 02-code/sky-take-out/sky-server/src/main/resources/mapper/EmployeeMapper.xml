@@ -2,4 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.sky.mapper.EmployeeMapper">
+    <!--# 这里是根据 员工名字模糊分页查询，所以有了name不等于空的判断-->
+    <!--# test那里是指那个字段不为空且不为空串时,则拼接下面那条语句,where标签会自动识别抹掉"and"-->
+    <!--# 这里不需要写limit了，插件提供了-->
+    <!--# 注意test不要有空格-->
+    <!--select标签里面写注释会报错......-->
+    <select id="pageQuery" resultType="com.sky.entity.Employee">
+        select * from employee
+        <where>
+            <if test="name != null and name != ''">
+                and name like concat('%',#{name},'%')
+            </if>
+        </where>
+        order by create_time desc
+    </select>
 </mapper>
