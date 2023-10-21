@@ -18,6 +18,7 @@ import com.sky.result.PageResult;
 import com.sky.service.EmployeeService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
@@ -117,6 +118,60 @@ public class EmployeeServiceImpl implements EmployeeService {
         long total = page.getTotal();
         List<Employee> records = page.getResult();
         return new PageResult(total,records);
+    }
+
+    /**
+     * 启用禁用员工账号
+     * @param status
+     * @param id
+     */
+    @Override
+    public void startOrStop(Integer status, Long id) {
+        //update employee set status = ? where id = ?
+        //都说了，为了提升update的复用性，根据传入的数据进行动态sql。最坏的情况肯定是修改所有参数
+        //因为他想写一个总的update而不是只针对修改状态
+        //写法1：不好
+        //Employee employee = new Employee();
+        //employee.setStatus(status);
+        //employee.setId(id);
+
+        //写法1：利用@Builder构建器注解——也可以创建一个对象
+        Employee employee = Employee.builder()
+                .status(status)
+                .id(id)
+                .build();
+        employeeMapper.update(employee);
+    }
+
+    /**
+     * 根据id查询员工信息
+     * @param id
+     * @return
+     */
+    @Override
+    public Employee getById(Long id) {
+        Employee employee = employeeMapper.getById(id);
+        employee.setPassword("****");
+        //这里老师把密码手动改成****，不让前端看，加强安全性
+        //为什么不直接使用VO呢，哈哈
+        //肯定用vo更好，就是这里返回的信息太多了，所以为了省劲就密码用**了，如果返回的信息少肯定选vo
+        return employee;
+    }
+
+    /**
+     * 编辑员工信息
+     * @param employeeDTO
+     * @return
+     */
+    @Override
+    public void update(EmployeeDTO employeeDTO) {
+        //新增员工方法里面有一些对数据的处理只适合新数据，如设置默认密码，创建与修改时间。而这不需要
+        Employee employee = new Employee();
+        BeanUtils.copyProperties(employeeDTO,employee);
+        employee.setUpdateTime(LocalDateTime.now());
+        //拦截器那里已经设置好了
+        employee.setUpdateUser(BaseContext.getCurrentId());
+        employeeMapper.update(employee);
     }
 
 }

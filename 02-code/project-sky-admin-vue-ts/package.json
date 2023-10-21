@@ -35,7 +35,9 @@
     "vuex": "^3.1.1",
     "vuex-class": "^0.3.2",
     "vuex-module-decorators": "^0.10.1",
-    "vuex-persistedstate": "^2.7.0"
+    "vuex-persistedstate": "^2.7.0",
+    "utf8": "^2.1.2",
+    "base-64": "^0.1.0"
   },
   "devDependencies": {
     "@types/jest": "^24.0.18",

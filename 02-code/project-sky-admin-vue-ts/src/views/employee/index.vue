@@ -32,7 +32,7 @@
         <el-table-column prop="username" label="账号" />
         <el-table-column prop="phone" label="手机号" />
         <el-table-column label="账号状态">
-          <template slot-scope="scope">
+          <template v-slot="scope">
             <div
               class="tableColumn-status"
               :class="{ 'stop-use': String(scope.row.status) === '0' }"
@@ -43,7 +43,7 @@
         </el-table-column>
         <el-table-column prop="updateTime" label="最后操作时间" />
         <el-table-column label="操作" width="160" align="center">
-          <template slot-scope="scope">
+          <template v-slot="scope">
             <el-button
               type="text"
               size="small"
@@ -165,6 +165,8 @@ export default class extends Vue {
 
   //状态修改
   private statusHandle(row: any) {
+    console.log('statusHandle状态修改函数执行了')
+    debugger
     if (row.username === 'admin') {
       return
     }

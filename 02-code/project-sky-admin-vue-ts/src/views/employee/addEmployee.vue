@@ -209,6 +209,9 @@ export default class extends Vue {
     if (this.$route.query.id) {
       this.title = '修改员工信息'
       this.init()
+      //网友：这块数据不应该再发请求，可以直接绑定分页的数据。
+      //我看了一下，不行，因为还有身份证信息呢——不对，身份证也能拿到
+      //我来优化一下写法
     }
   }
 

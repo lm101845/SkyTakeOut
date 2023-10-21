@@ -1,5 +1,6 @@
 sky-take-out是后端代码
-project-sky-admin-vue-ts是前端代码
+project-sky-admin-vue-ts是前端代码(我在老师的基础上进行了一些代码优化)
+
 
 前端老师直接就启动了nginx服务器，但是我想启动一下前端源码看一下。
 

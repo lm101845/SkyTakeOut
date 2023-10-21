@@ -16,4 +16,22 @@
         </where>
         order by create_time desc
     </select>
+
+    <!--可以写别名Employee，而不用完整的写动态类名-->
+    <!--这种事动态SQL了，更加灵活-->
+    <update id="update" parameterType="Employee">
+        update employee
+        <set>
+            <if test="name != null">name=#{name},</if>
+            <if test="username != null">username=#{username},</if>
+            <if test="password != null">password=#{password},</if>
+            <if test="phone != null">phone=#{phone},</if>
+            <if test="sex != null">sex=#{sex},</if>
+            <if test="idNumber != null">id_number=#{idNumber},</if>
+            <if test="status != null">status=#{status},</if>
+            <if test="createTime != null">create_time=#{createTime},</if>
+            <if test="updateUser != null">update_user=#{updateUser},</if>
+        </set>
+        where id = #{id}
+    </update>
 </mapper>
