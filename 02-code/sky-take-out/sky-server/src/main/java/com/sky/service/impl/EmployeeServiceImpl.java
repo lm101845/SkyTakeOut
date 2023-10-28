@@ -92,12 +92,14 @@ public class EmployeeServiceImpl implements EmployeeService {
         employee.setStatus(ENABLE);
         //2.设置密码，默认密码：123456
         employee.setPassword(DigestUtils.md5DigestAsHex(PasswordConstant.DEFAULT_PASSWORD.getBytes(StandardCharsets.UTF_8)));
-        //3.设置当前记录的创建时间和修改时间
-        employee.setCreateTime(LocalDateTime.now());
-        employee.setUpdateTime(LocalDateTime.now());
-        //后期需要改为当前登录用户的id——要动态获取
-        employee.setCreateUser(BaseContext.getCurrentId());
-        employee.setUpdateUser(BaseContext.getCurrentId());
+
+        //使用AutoFill注解实现自动填充，不用自己写了
+        ////3.设置当前记录的创建时间和修改时间
+        //employee.setCreateTime(LocalDateTime.now());
+        //employee.setUpdateTime(LocalDateTime.now());
+        ////后期需要改为当前登录用户的id——要动态获取
+        //employee.setCreateUser(BaseContext.getCurrentId());
+        //employee.setUpdateUser(BaseContext.getCurrentId());
 
         employeeMapper.insert(employee);
     }
@@ -168,9 +170,9 @@ public class EmployeeServiceImpl implements EmployeeService {
         //新增员工方法里面有一些对数据的处理只适合新数据，如设置默认密码，创建与修改时间。而这不需要
         Employee employee = new Employee();
         BeanUtils.copyProperties(employeeDTO,employee);
-        employee.setUpdateTime(LocalDateTime.now());
-        //拦截器那里已经设置好了
-        employee.setUpdateUser(BaseContext.getCurrentId());
+        ////拦截器那里已经设置好了，这里不用写了
+        //employee.setUpdateTime(LocalDateTime.now());
+        //employee.setUpdateUser(BaseContext.getCurrentId());
         employeeMapper.update(employee);
     }
 

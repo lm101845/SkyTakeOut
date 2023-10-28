@@ -20,8 +20,8 @@ module.exports = {
   // 开启代理
   devServer: {
     host:'0.0.0.0',
-    public: '0.0.0.0:8888', // 本地的ip:端口号
-    port: 8888,
+    public: '0.0.0.0:8889', // 本地的ip:端口号
+    port: 8889,
     open: true,
     disableHostCheck:true,
     hot:true,//自动保存

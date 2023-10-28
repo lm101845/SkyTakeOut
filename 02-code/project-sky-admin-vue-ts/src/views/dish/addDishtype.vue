@@ -358,6 +358,7 @@ export default class extends Vue {
           value: JSON.stringify(obj.value)
         }))
         delete params.dishFlavors
+        console.log(params,'打印params')
         if (this.actionType == 'add') {
           delete params.id
           addDish(params)
