@@ -6,6 +6,11 @@ sky:
     database: sky_take_out
     username: root
     password: 123456
+  redis:
+    host: 101.201.238.8
+    port: 6379
+    password: 123456
+    database: 10
   alioss:
     endpoint: oss-cn-beijing.aliyuncs.com
     access-key-id: LTAI5tEBRYciTpkz95GU1ycw
