@@ -16,3 +16,6 @@ sky:
     access-key-id: LTAI5tEBRYciTpkz95GU1ycw
     access-key-secret: pRUmHg2mpWIRc6aBm4P2UjH1RKMrj9
     bucket-name: guli-1018
+  wechat:
+    appid: wxce3f7beca1cb4de9
+    secret: 52e443e86386326f1807249ccdc6af09

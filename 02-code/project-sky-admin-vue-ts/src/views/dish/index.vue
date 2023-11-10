@@ -207,6 +207,7 @@ export default class extends Vue {
       status: this.dishStatus
     })
       .then(res => {
+        console.log(res,'getDishPage函数调用了')
         if (res.data.code === 1) {
           this.tableData = res.data && res.data.data && res.data.data.records
           this.counts = Number(res.data.data.total)
