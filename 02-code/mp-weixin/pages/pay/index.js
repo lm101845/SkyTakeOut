@@ -223,26 +223,27 @@ var _api = __webpack_require__(/*! @/pages/api/api.js */ 24);function ownKeys(ob
 
         (0, _api.paymentOrder)(params).then(function (res) {
           if (res.code === 1) {
-            wx.requestPayment({
-              nonceStr: res.data.nonceStr,
-              package: res.data.packageStr,
-              paySign: res.data.paySign,
-              timeStamp: res.data.timeStamp,
-              signType: res.data.signType,
-              success:function(res){
-                wx.showModal({
-                  title: '提示',
-                  content: '支付成功',
-                  success:function(){
-                    uni.redirectTo({url: '/pages/success/index?orderId=' + _this.orderId });
-                  }
-                })
-                console.log('支付成功!')
-              }
-            })
+            // TODO:处理用户支付
+            // wx.requestPayment({
+            //   nonceStr: res.data.nonceStr,
+            //   package: res.data.packageStr,
+            //   paySign: res.data.paySign,
+            //   timeStamp: res.data.timeStamp,
+            //   signType: res.data.signType,
+            //   success:function(res){
+            //     wx.showModal({
+            //       title: '提示',
+            //       content: '支付成功',
+            //       success:function(){
+            //         uni.redirectTo({url: '/pages/success/index?orderId=' + _this.orderId });
+            //       }
+            //     })
+            //     console.log('支付成功!')
+            //   }
+            // })
 
-
-            //uni.redirectTo({url: '/pages/success/index?orderId=' + _this.orderId });
+            //直接重定向，不使用微信支付
+            uni.redirectTo({url: '/pages/success/index?orderId=' + _this.orderId });
 
           } else {
             wx.showModal({

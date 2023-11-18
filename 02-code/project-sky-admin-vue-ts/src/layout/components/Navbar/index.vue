@@ -188,6 +188,7 @@ export default class extends Vue {
       }
       // 监听socket消息接收
       this.websocket.onmessage = function (msg) {
+        console.log(msg,'监听socket消息接收--msg')
         // 转换为json对象
         that.$refs.audioVo.currentTime = 0
         that.$refs.audioVo2.currentTime = 0
